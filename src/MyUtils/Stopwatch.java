@@ -12,19 +12,23 @@ public class Stopwatch {
 
     public void Start()
     {
+        if (isRunning)
+            return;
         startTime = System.nanoTime();
         isRunning = true;
     }
 
     public void Stop()
     {
+        if (!isRunning)
+            return;
         stopTime = System.nanoTime();
         isRunning = false;
     }
 
     public long GetElapsedNanoseconds()
     {
-        if(isRunning)
+        if (isRunning)
             return System.nanoTime() - startTime;
         return stopTime - startTime;
     }
