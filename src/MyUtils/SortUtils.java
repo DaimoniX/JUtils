@@ -9,7 +9,7 @@ public class SortUtils {
         {
             for(int j = 0; j < array.length; j++)
             {
-                if(array[i].compareTo(array[j]) > 0)
+                if(array[j].compareTo(array[i]) > 0)
                 {
                     ArrayUtils.Swap(array, i, j);
                 }
@@ -23,7 +23,7 @@ public class SortUtils {
         {
             for(int j = 0; j < array.length; j++)
             {
-                if(comparator.compare(array[i], array[j]) > 0)
+                if(comparator.compare(array[j], array[i]) > 0)
                 {
                     ArrayUtils.Swap(array, i, j);
                 }
@@ -41,7 +41,7 @@ public class SortUtils {
             while(j >= 0 && array[j].compareTo(el) > 0)
             {
                 ArrayUtils.Swap(array, j, j + 1);
-                j++;
+                j--;
             }
             array[j + 1] = el;
         }
@@ -57,7 +57,7 @@ public class SortUtils {
             while(j >= 0 && comparator.compare(array[j], el) > 0)
             {
                 ArrayUtils.Swap(array, j, j + 1);
-                j++;
+                j--;
             }
             array[j + 1] = el;
         }
