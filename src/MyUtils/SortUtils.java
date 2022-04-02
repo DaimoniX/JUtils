@@ -3,14 +3,7 @@ package MyUtils;
 import java.util.Comparator;
 
 public class SortUtils {
-    public static void Swap(Comparable[] array, int indexA, int indexB)
-    {
-        Comparable temp = array[indexA];
-        array[indexA] = array[indexB];
-        array[indexB] = temp;
-    }
-
-    public static void BubbleSort(Comparable[] array)
+    public static <T extends Comparable<T>> void BubbleSort(T[] array)
     {
         for(int i = 0; i < array.length; i++)
         {
@@ -18,13 +11,13 @@ public class SortUtils {
             {
                 if(array[i].compareTo(array[j]) > 0)
                 {
-                    Swap(array, i, j);
+                    ArrayUtils.Swap(array, i, j);
                 }
             }
         }
     }
 
-    public static void BubbleSort(Comparable[] array, Comparator comparator)
+    public static <T> void BubbleSort(T[] array, Comparator<? super T> comparator)
     {
         for(int i = 0; i < array.length; i++)
         {
@@ -32,38 +25,38 @@ public class SortUtils {
             {
                 if(comparator.compare(array[i], array[j]) > 0)
                 {
-                    Swap(array, i, j);
+                    ArrayUtils.Swap(array, i, j);
                 }
             }
         }
     }
 
-    public static void InsertionSort(Comparable[] array)
+    public static <T extends Comparable<T>> void InsertionSort(T[] array)
     {
         for(int i = 1; i < array.length; i++)
         {
-            Comparable el = array[i];
+            T el = array[i];
             int j = i - 1;
 
             while(j >= 0 && array[j].compareTo(el) > 0)
             {
-                Swap(array, j, j + 1);
+                ArrayUtils.Swap(array, j, j + 1);
                 j++;
             }
             array[j + 1] = el;
         }
     }
 
-    public static void InsertionSort(Comparable[] array, Comparator comparator)
+    public static <T extends Comparable<T>> void InsertionSort(T[] array, Comparator<T> comparator)
     {
         for(int i = 1; i < array.length; i++)
         {
-            Comparable el = array[i];
+            T el = array[i];
             int j = i - 1;
 
             while(j >= 0 && comparator.compare(array[j], el) > 0)
             {
-                Swap(array, j, j + 1);
+                ArrayUtils.Swap(array, j, j + 1);
                 j++;
             }
             array[j + 1] = el;
