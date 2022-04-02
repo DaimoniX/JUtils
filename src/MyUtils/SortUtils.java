@@ -32,4 +32,16 @@ public class SortUtils {
             array[j + 1] = el;
         }
     }
+
+    public static <T extends Comparable<T>> boolean IsSorted(T[] array) {
+        return IsSorted(array, Comparator.naturalOrder());
+    }
+
+    public static <T> boolean IsSorted(T[] array, Comparator<? super T> comparator) {
+        for (int i = 0; i < array.length - 1; i++) {
+            if (comparator.compare(array[i + 1], array[i]) < 0)
+                return false;
+        }
+        return true;
+    }
 }
