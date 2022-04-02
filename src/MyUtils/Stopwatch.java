@@ -16,11 +16,21 @@ public class Stopwatch {
         isRunning = true;
     }
 
+    public void Restart() {
+        if (!isRunning)
+            return;
+        startTime = System.nanoTime();
+    }
+
     public void Stop() {
         if (!isRunning)
             return;
         stopTime = System.nanoTime();
         isRunning = false;
+    }
+
+    public boolean IsRunning() {
+        return isRunning;
     }
 
     public long GetElapsedNanoseconds() {
