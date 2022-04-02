@@ -5,36 +5,31 @@ public class Stopwatch {
     private long stopTime;
     private boolean isRunning;
 
-    public Stopwatch()
-    {
+    public Stopwatch() {
         startTime = stopTime = System.nanoTime();
     }
 
-    public void Start()
-    {
+    public void Start() {
         if (isRunning)
             return;
         startTime = System.nanoTime();
         isRunning = true;
     }
 
-    public void Stop()
-    {
+    public void Stop() {
         if (!isRunning)
             return;
         stopTime = System.nanoTime();
         isRunning = false;
     }
 
-    public long GetElapsedNanoseconds()
-    {
+    public long GetElapsedNanoseconds() {
         if (isRunning)
             return System.nanoTime() - startTime;
         return stopTime - startTime;
     }
 
-    public long GetElapsedMilliseconds()
-    {
+    public long GetElapsedMilliseconds() {
         return GetElapsedNanoseconds() / 1000000;
     }
 }
