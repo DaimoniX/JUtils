@@ -37,4 +37,36 @@ public class SortUtils {
             }
         }
     }
+
+    public static void InsertionSort(Comparable[] array)
+    {
+        for(int i = 1; i < array.length; i++)
+        {
+            Comparable el = array[i];
+            int j = i - 1;
+
+            while(j >= 0 && array[j].compareTo(el) > 0)
+            {
+                Swap(array, j, j + 1);
+                j++;
+            }
+            array[j + 1] = el;
+        }
+    }
+
+    public static void InsertionSort(Comparable[] array, Comparator comparator)
+    {
+        for(int i = 1; i < array.length; i++)
+        {
+            Comparable el = array[i];
+            int j = i - 1;
+
+            while(j >= 0 && comparator.compare(array[j], el) > 0)
+            {
+                Swap(array, j, j + 1);
+                j++;
+            }
+            array[j + 1] = el;
+        }
+    }
 }
