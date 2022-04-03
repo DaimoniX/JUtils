@@ -1,4 +1,4 @@
-package MyUtils.time;
+package daimonix.time;
 
 public class TimeSpan implements Comparable<TimeSpan> {
     private final String _string;

@@ -1,4 +1,4 @@
-package MyUtils.time;
+package daimonix.time;
 
 public class Stopwatch {
     private long startTime;

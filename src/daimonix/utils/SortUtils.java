@@ -1,4 +1,4 @@
-package MyUtils;
+package daimonix.utils;
 
 import java.util.Comparator;
 
