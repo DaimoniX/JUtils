@@ -43,7 +43,7 @@ public class Stopwatch {
         return GetElapsedNanoseconds() / 1000000;
     }
 
-    public TimeSpan GetEleapsedTimeSpan() {
+    public TimeSpan GetElapsedTime() {
         return new TimeSpan(GetElapsedNanoseconds());
     }
 }
