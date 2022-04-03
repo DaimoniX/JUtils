@@ -81,4 +81,23 @@ public class TimeSpan implements Comparable<TimeSpan> {
         return 0;
     }
 
+    public int GetDays() {
+        return days;
+    }
+
+    public int GetHours() {
+        return hours;
+    }
+
+    public int GetMinutes() {
+        return minutes;
+    }
+
+    public int GetSeconds() {
+        return seconds;
+    }
+
+    public int GetMilliseconds() {
+        return milliseconds;
+    }
 }
