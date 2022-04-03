@@ -32,14 +32,18 @@ public class Stopwatch {
     public boolean IsRunning() {
         return isRunning;
     }
-    
+
     public long GetElapsedNanoseconds() {
         if (isRunning)
             return System.nanoTime() - startTime;
         return stopTime - startTime;
     }
-    
+
     public long GetElapsedMilliseconds() {
         return GetElapsedNanoseconds() / 1000000;
+    }
+
+    public TimeSpan GetEleapsedTimeSpan() {
+        return new TimeSpan(GetElapsedNanoseconds());
     }
 }
