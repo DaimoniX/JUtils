@@ -1,4 +1,4 @@
-package MyUtils;
+package MyUtils.time;
 
 public class Stopwatch {
     private long startTime;
@@ -32,13 +32,13 @@ public class Stopwatch {
     public boolean IsRunning() {
         return isRunning;
     }
-
+    
     public long GetElapsedNanoseconds() {
         if (isRunning)
             return System.nanoTime() - startTime;
         return stopTime - startTime;
     }
-
+    
     public long GetElapsedMilliseconds() {
         return GetElapsedNanoseconds() / 1000000;
     }
