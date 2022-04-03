@@ -1,20 +1,15 @@
 package MyUtils.time;
 
 public class TimeSpan implements Comparable<TimeSpan> {
-    private String _string;
-    private int days;
-    private int hours;
-    private int minutes;
-    private int seconds;
-    private int milliseconds;
+    private final String _string;
+    private final int days;
+    private final int hours;
+    private final int minutes;
+    private final int seconds;
+    private final int milliseconds;
 
     public TimeSpan(long nanoseconds) {
-        this.milliseconds = (int) (nanoseconds / 1000000 % 1000);
-        this.seconds = (int) (nanoseconds / 1000000 / 1000 % 60);
-        this.minutes = (int) (nanoseconds / 1000000 / 1000 / 60 % 60);
-        this.hours = (int) (nanoseconds / 1000000 / 1000 / 60 / 60 % 24);
-        this.days = (int) (nanoseconds / 1000000 / 1000 / 60 / 60 / 24);
-        CreateString();
+        this(0, 0, 0, (int) (nanoseconds / 1000000 / 1000), (int) (nanoseconds / 1000000 % 1000));
     }
 
     public TimeSpan(int days, int hours, int minutes, int seconds, int milliseconds) {
@@ -27,7 +22,20 @@ public class TimeSpan implements Comparable<TimeSpan> {
         days += hours / 24;
         this.hours = hours % 24;
         this.days = days;
-        CreateString();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("TimeSpan {");
+        if (this.days > 0)
+            sb.append(this.days).append("d, ");
+        if (this.hours > 0)
+            sb.append(this.hours).append("h, ");
+        if (this.minutes > 0)
+            sb.append(this.minutes).append("m, ");
+        sb.append(this.seconds);
+        if (this.milliseconds > 0)
+            sb.append(".").append(String.format("%03d", this.milliseconds));
+        sb.append("s}");
+        _string = sb.toString();
     }
 
     public TimeSpan(int days, int hours, int minutes, int seconds) {
@@ -36,20 +44,6 @@ public class TimeSpan implements Comparable<TimeSpan> {
 
     public TimeSpan(int hours, int minutes, int seconds) {
         this(0, hours, minutes, seconds);
-    }
-
-    private void CreateString() {
-        _string = "TimeSpan {";
-        if (days > 0)
-            _string += days + "d, ";
-        if (hours > 0)
-            _string += hours + "h, ";
-        if (minutes > 0)
-            _string += minutes + "m, ";
-        _string += seconds;
-        if (milliseconds > 0)
-            _string += "." + String.format("%03d", milliseconds);
-        _string += "s}";
     }
 
     @Override
