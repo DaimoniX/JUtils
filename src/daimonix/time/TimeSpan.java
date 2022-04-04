@@ -2,11 +2,11 @@ package daimonix.time;
 
 public class TimeSpan implements Comparable<TimeSpan> {
     private final String _string;
-    private final int days;
-    private final int hours;
-    private final int minutes;
-    private final int seconds;
-    private final int milliseconds;
+    public final int Days;
+    public final int Hours;
+    public final int Minutes;
+    public final int Seconds;
+    public final int Milliseconds;
 
     public TimeSpan(long nanoseconds) {
         this(0, 0, 0, (int) (nanoseconds / 1000000 / 1000), (int) (nanoseconds / 1000000 % 1000));
@@ -14,26 +14,26 @@ public class TimeSpan implements Comparable<TimeSpan> {
 
     public TimeSpan(int days, int hours, int minutes, int seconds, int milliseconds) {
         seconds += milliseconds / 1000;
-        this.milliseconds = milliseconds % 1000;
+        this.Milliseconds = milliseconds % 1000;
         minutes += seconds / 60;
-        this.seconds = seconds % 60;
+        this.Seconds = seconds % 60;
         hours += minutes / 60;
-        this.minutes = minutes % 60;
+        this.Minutes = minutes % 60;
         days += hours / 24;
-        this.hours = hours % 24;
-        this.days = days;
+        this.Hours = hours % 24;
+        this.Days = days;
 
         StringBuilder sb = new StringBuilder();
         sb.append("TimeSpan {");
-        if (this.days > 0)
-            sb.append(this.days).append("d, ");
-        if (this.hours > 0)
-            sb.append(this.hours).append("h, ");
-        if (this.minutes > 0)
-            sb.append(this.minutes).append("m, ");
-        sb.append(this.seconds);
-        if (this.milliseconds > 0)
-            sb.append(".").append(String.format("%03d", this.milliseconds));
+        if (this.Days > 0)
+            sb.append(this.Days).append("d, ");
+        if (this.Hours > 0)
+            sb.append(this.Hours).append("h, ");
+        if (this.Minutes > 0)
+            sb.append(this.Minutes).append("m, ");
+        sb.append(this.Seconds);
+        if (this.Milliseconds > 0)
+            sb.append(".").append(String.format("%03d", this.Milliseconds));
         sb.append("s}");
         _string = sb.toString();
     }
@@ -67,37 +67,17 @@ public class TimeSpan implements Comparable<TimeSpan> {
         if (other == this)
             return 0;
 
-        if (this.days != other.days)
-            return Integer.compare(this.days, other.days);
-        if (this.hours != other.hours)
-            return Integer.compare(this.hours, other.hours);
-        if (this.minutes != other.minutes)
-            return Integer.compare(this.minutes, other.minutes);
-        if (this.seconds != other.seconds)
-            return Integer.compare(this.seconds, other.seconds);
-        if (this.milliseconds != other.milliseconds)
-            return Integer.compare(this.milliseconds, other.milliseconds);
+        if (this.Days != other.Days)
+            return Integer.compare(this.Days, other.Days);
+        if (this.Hours != other.Hours)
+            return Integer.compare(this.Hours, other.Hours);
+        if (this.Minutes != other.Minutes)
+            return Integer.compare(this.Minutes, other.Minutes);
+        if (this.Seconds != other.Seconds)
+            return Integer.compare(this.Seconds, other.Seconds);
+        if (this.Milliseconds != other.Milliseconds)
+            return Integer.compare(this.Milliseconds, other.Milliseconds);
 
         return 0;
-    }
-
-    public int GetDays() {
-        return days;
-    }
-
-    public int GetHours() {
-        return hours;
-    }
-
-    public int GetMinutes() {
-        return minutes;
-    }
-
-    public int GetSeconds() {
-        return seconds;
-    }
-
-    public int GetMilliseconds() {
-        return milliseconds;
     }
 }
