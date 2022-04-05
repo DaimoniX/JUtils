@@ -10,7 +10,7 @@ public class SelectionSorter extends Sorter {
         for (int i = 0; i < array.length - 1; i++) {
             int min = i;
             for (int j = i + 1; j < array.length; j++)
-                if (comparator.compare(array[i], array[j]) > 0)
+                if (comparator.compare(array[min], array[j]) > 0)
                     min = j;
             ArrayUtils.Swap(array, i, min);
         }
