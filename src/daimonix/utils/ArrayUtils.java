@@ -13,15 +13,20 @@ public class ArrayUtils {
     }
 
     public static <T> String toString(T[] array) {
-        return toString(array, ',');
+        return toString(array, ", ");
     }
 
-    public static <T> String toString(T[] array, char separator) {
-        StringBuilder sBuilder = new StringBuilder();
+    public static <T> String toString(T[] array, String separator) {
+        if (array == null)
+            return "null";
+        if (array.length == 1)
+            return "[]";
+        StringBuilder sBuilder = new StringBuilder().append('[');
         for (int i = 0; i < array.length; i++) {
             sBuilder.append(array[i].toString()).append(separator);
         }
-        return sBuilder.toString();
+        sBuilder.setLength(sBuilder.length() - separator.length());
+        return sBuilder.append(']').toString();
     }
 
     public static Integer[] CreateSortedArray(int length) {
