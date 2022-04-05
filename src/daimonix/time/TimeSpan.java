@@ -24,7 +24,7 @@ public class TimeSpan implements Comparable<TimeSpan> {
         this.Days = days;
 
         StringBuilder sb = new StringBuilder();
-        sb.append("TimeSpan {");
+        sb.append("{");
         if (this.Days > 0)
             sb.append(this.Days).append("d, ");
         if (this.Hours > 0)
