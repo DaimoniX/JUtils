@@ -44,9 +44,7 @@ public class TimeSpan implements Comparable<TimeSpan> {
                 builder.append(Hours).append("h ");
             if (Minutes > 0)
                 builder.append(Minutes).append("m ");
-            builder.append(Seconds);
-            if (Milliseconds > 0)
-                builder.append(".").append(String.format("%03d", Milliseconds));
+            builder.append(Seconds).append(".").append(String.format("%03d", Milliseconds));
 
             _string = builder.toString() + "s";
 
