@@ -28,13 +28,12 @@ class ArrayFactory {
 }
 
 public class BenchmarkTest {
-    public void Run() throws FileNotFoundException
-    {
+    public void Run() throws FileNotFoundException {
         PrintStream ostream = new PrintStream(String.format("output-%d.txt", System.nanoTime()));
 
-        Integer[] testSizes = new Integer[] { 1024, 2048, 4096, 8192, 16384, 32768 };
+        Integer[] testSizes = new Integer[] { 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072 };
         Sorter[] sorters = new Sorter[] { new BubbleSorter(), new InsertionSorter(), new SelectionSorter(),
-                new ShellSorter(), new HeapSorter(),  };
+                new ShellSorter(), new HeapSorter(), };
         String[] modes = new String[] { "sorted", "random", "reversed" };
         ArrayFactory arrayFactory = new ArrayFactory();
 
