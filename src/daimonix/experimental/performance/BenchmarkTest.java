@@ -2,6 +2,9 @@ package daimonix.experimental.performance;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 import daimonix.algorithms.sorting.*;
 import daimonix.utils.ArrayUtils;
@@ -29,13 +32,13 @@ class ArrayFactory {
 
 public class BenchmarkTest {
     public void Run() throws FileNotFoundException {
-        PrintStream ostream = new PrintStream(String.format("output-%d.txt", System.nanoTime()));
+        PrintStream ostream = new PrintStream(String.format("out-%s.txt", LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS)));
+        ArrayFactory arrayFactory = new ArrayFactory();
 
-        Integer[] testSizes = new Integer[] { 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072 };
+        Integer[] testSizes = new Integer[] { 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144 };
         Sorter[] sorters = new Sorter[] { new BubbleSorter(), new InsertionSorter(), new SelectionSorter(),
                 new ShellSorter(), new HeapSorter(), };
         String[] modes = new String[] { "sorted", "random", "reversed" };
-        ArrayFactory arrayFactory = new ArrayFactory();
 
         for (Sorter sorter : sorters) {
             ostream.println("===========================================================\n" +
@@ -43,9 +46,9 @@ public class BenchmarkTest {
                     "\n===========================================================\n");
             for (Integer size : testSizes) {
                 for (String mode : modes) {
-                    ostream.println("Benchmark for " + sorter.getClass().getSimpleName() + ", array size: " + size
-                            + ", mode: " + mode + "\nExecution time: "
-                            + Benchmark.Run(sorter::Sort, arrayFactory.GetArray(mode, size)) + "\n");
+                    ostream.println("[" + LocalTime.now().truncatedTo(ChronoUnit.SECONDS) + "] Benchmark for " + sorter.getClass().getSimpleName() + ", array size: " + size
+                            + ", mode: " + mode + "\nExecution time: {"
+                            + Benchmark.Run(sorter::Sort, arrayFactory.GetArray(mode, size)).toPreciseString() + "}\n");
                 }
             }
         }
