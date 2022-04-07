@@ -35,9 +35,9 @@ public class BenchmarkTest {
         PrintStream ostream = new PrintStream(String.format("out-%s.txt", LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS)));
         ArrayFactory arrayFactory = new ArrayFactory();
 
-        Integer[] testSizes = new Integer[] { 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144 };
-        Sorter[] sorters = new Sorter[] { new BubbleSorter(), new InsertionSorter(), new SelectionSorter(),
-                new ShellSorter(), new HeapSorter(), };
+        Integer[] testSizes = new Integer[] { 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072 };
+        Sorter[] sorters = new Sorter[] { new BubbleSorter(), new InsertionSorter(), new SelectionSorter(), new CombSorter(),
+                new ShellSorter(), new HeapSorter(), new MergeSorter(), new QuickSorter() };
         String[] modes = new String[] { "sorted", "random", "reversed" };
 
         for (Sorter sorter : sorters) {
