@@ -3,11 +3,11 @@ package daimonix.algorithms.sorting;
 import java.util.Comparator;
 
 public abstract class Sorter {
-    public static <T extends Comparable<T>> boolean IsSorted(T[] array) {
-        return IsSorted(array, Comparator.naturalOrder());
+    public static <T extends Comparable<T>> boolean isSorted(T[] array) {
+        return isSorted(array, Comparator.naturalOrder());
     }
 
-    public static <T> boolean IsSorted(T[] array, Comparator<? super T> comparator) {
+    public static <T> boolean isSorted(T[] array, Comparator<? super T> comparator) {
         for (int i = 0; i < array.length - 1; i++) {
             if (comparator.compare(array[i + 1], array[i]) < 0)
                 return false;
@@ -15,9 +15,9 @@ public abstract class Sorter {
         return true;
     }
 
-    public <T extends Comparable<T>> void Sort(T[] array) {
-        Sort(array, Comparator.naturalOrder());
+    public <T extends Comparable<T>> void sort(T[] array) {
+        sort(array, Comparator.naturalOrder());
     }
 
-    public abstract <T> void Sort(T[] array, Comparator<? super T> comparator);
+    public abstract <T> void sort(T[] array, Comparator<? super T> comparator);
 }

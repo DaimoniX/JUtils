@@ -6,7 +6,7 @@ public class ArrayUtils {
     private ArrayUtils() {
     }
 
-    public static <T> void Swap(T[] array, int indexA, int indexB) {
+    public static <T> void swap(T[] array, int indexA, int indexB) {
         T temp = array[indexA];
         array[indexA] = array[indexB];
         array[indexB] = temp;
@@ -29,18 +29,18 @@ public class ArrayUtils {
         return sBuilder.append(']').toString();
     }
 
-    public static Integer[] CreateSortedArray(int length) {
+    public static Integer[] createSortedArray(int length) {
         Integer[] arr = new Integer[length];
         for (int i = 0; i < length; i++)
             arr[i] = i + 1;
         return arr;
     }
 
-    public static Integer[] CreateRandomArray(int length) {
-        return CreateRandomArray(length, System.nanoTime());
+    public static Integer[] createRandomArray(int length) {
+        return createRandomArray(length, System.nanoTime());
     }
 
-    public static Integer[] CreateRandomArray(int length, long seed) {
+    public static Integer[] createRandomArray(int length, long seed) {
         Integer[] arr = new Integer[length];
         Random rand = new Random(seed);
         for (int i = 0; i < length; i++)
@@ -48,7 +48,7 @@ public class ArrayUtils {
         return arr;
     }
 
-    public static Integer[] CreateReversedArray(int length) {
+    public static Integer[] createReversedArray(int length) {
         Integer[] arr = new Integer[length];
         for (int i = 0; i < length; i++)
             arr[i] = length - i;

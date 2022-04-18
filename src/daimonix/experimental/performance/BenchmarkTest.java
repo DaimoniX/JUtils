@@ -19,11 +19,11 @@ class ArrayFactory {
     public Integer[] GetArray(String mode, int size) {
         switch (mode) {
             case "sorted":
-                return ArrayUtils.CreateSortedArray(size);
+                return ArrayUtils.createSortedArray(size);
             case "random":
-                return ArrayUtils.CreateRandomArray(size, seed);
+                return ArrayUtils.createRandomArray(size, seed);
             case "reversed":
-                return ArrayUtils.CreateReversedArray(size);
+                return ArrayUtils.createReversedArray(size);
             default:
                 return null;
         }
@@ -48,7 +48,7 @@ public class BenchmarkTest {
                 for (String mode : modes) {
                     ostream.println("[" + LocalTime.now().truncatedTo(ChronoUnit.SECONDS) + "] Benchmark for " + sorter.getClass().getSimpleName() + ", array size: " + size
                             + ", mode: " + mode + "\nExecution time: {"
-                            + Benchmark.Run(sorter::Sort, arrayFactory.GetArray(mode, size)).toPreciseString() + "}\n");
+                            + Benchmark.Run(sorter::sort, arrayFactory.GetArray(mode, size)).toPreciseString() + "}\n");
                 }
             }
         }

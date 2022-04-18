@@ -5,7 +5,7 @@ import java.util.Comparator;
 public class ShellSorter extends Sorter {
 
     @Override
-    public <T> void Sort(T[] array, Comparator<? super T> comparator) {
+    public <T> void sort(T[] array, Comparator<? super T> comparator) {
         int distance = array.length / 2;
         while (distance > 0) {
             for (int i = distance; i < array.length; i++) {

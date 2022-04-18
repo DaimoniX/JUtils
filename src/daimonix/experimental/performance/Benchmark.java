@@ -9,16 +9,16 @@ public class Benchmark {
     private static final Stopwatch STOPWATCH = new Stopwatch();
 
     public static TimeSpan Run(Runnable method) {
-        STOPWATCH.Start();
+        STOPWATCH.start();
         method.run();
-        STOPWATCH.Stop();
-        return STOPWATCH.GetElapsedTime();
+        STOPWATCH.stop();
+        return STOPWATCH.getElapsedTime();
     }
 
     public static <T> TimeSpan Run(Consumer<T> method, T parameter) {
-        STOPWATCH.Start();
+        STOPWATCH.start();
         method.accept(parameter);
-        STOPWATCH.Stop();
-        return STOPWATCH.GetElapsedTime();
+        STOPWATCH.stop();
+        return STOPWATCH.getElapsedTime();
     }
 }

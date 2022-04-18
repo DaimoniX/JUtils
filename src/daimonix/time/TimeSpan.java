@@ -3,57 +3,53 @@ package daimonix.time;
 import java.time.Duration;
 
 public class TimeSpan implements Comparable<TimeSpan> {
-    private final String _string;
-    private final String _preciseString;
-    public final int Days;
-    public final int Hours;
-    public final int Minutes;
-    public final int Seconds;
-    public final int Milliseconds;
-    public final int Microseconds;
-    public final int Nanoseconds;
-    public final long TotalSeconds;
-    public final long TotalMilliseconds;
-    public final long TotalNanoseconds;
+    private final String string;
+    private final String preciseString;
+    private final int days;
+    private final int hours;
+    private final int minutes;
+    private final int seconds;
+    private final int millis;
+    private final int micros;
+    private final int nanos;
+    private final long totalNanos;
 
-    public TimeSpan(long nanoseconds) {
-        this.TotalNanoseconds = nanoseconds;
-        this.TotalMilliseconds = this.TotalNanoseconds / 1000000L;
-        this.TotalSeconds = this.TotalNanoseconds / 1000L;
-        this.Nanoseconds = (int) (nanoseconds % 1000);
+    private TimeSpan(long nanoseconds) {
+        this.totalNanos = nanoseconds;
+        this.nanos = (int) (nanoseconds % 1000);
         nanoseconds /= 1000;
-        this.Microseconds = (int) (nanoseconds % 1000);
+        this.micros = (int) (nanoseconds % 1000);
         nanoseconds /= 1000;
-        this.Milliseconds = (int) (nanoseconds % 1000);
+        this.millis = (int) (nanoseconds % 1000);
         nanoseconds /= 1000;
-        this.Seconds = (int) (nanoseconds % 60);
+        this.seconds = (int) (nanoseconds % 60);
         nanoseconds /= 60;
-        this.Minutes = (int) (nanoseconds % 60);
+        this.minutes = (int) (nanoseconds % 60);
         nanoseconds /= 60;
-        this.Hours = (int) (nanoseconds % 24);
+        this.hours = (int) (nanoseconds % 24);
         nanoseconds /= 24;
-        this.Days = (int) nanoseconds;
-        if (TotalNanoseconds == 0)
-            _string = _preciseString = "0.0s";
+        this.days = (int) nanoseconds;
+        if (totalNanos == 0)
+            string = preciseString = "0.0s";
         else {
             StringBuilder builder = new StringBuilder();
 
-            if (Days > 0)
-                builder.append(Days).append("d ");
-            if (Hours > 0)
-                builder.append(Hours).append("h ");
-            if (Minutes > 0)
-                builder.append(Minutes).append("m ");
-            builder.append(Seconds).append(".").append(String.format("%03d", Milliseconds));
+            if (days > 0)
+                builder.append(days).append("d ");
+            if (hours > 0)
+                builder.append(hours).append("h ");
+            if (minutes > 0)
+                builder.append(minutes).append("m ");
+            builder.append(seconds).append(".").append(String.format("%03d", millis));
 
-            _string = builder.toString() + "s";
+            string = builder.toString() + "s";
 
-            if (this.Nanoseconds > 0)
-                builder.append(String.format("%03d", Microseconds)).append(String.format("%03d", Nanoseconds));
-            else if (this.Microseconds > 0)
-                builder.append(String.format("%03d", Microseconds));
+            if (this.nanos > 0)
+                builder.append(String.format("%03d", micros)).append(String.format("%03d", nanos));
+            else if (this.micros > 0)
+                builder.append(String.format("%03d", micros));
 
-            _preciseString = builder.append("s").toString();
+            preciseString = builder.append("s").toString();
         }
     }
 
@@ -74,7 +70,39 @@ public class TimeSpan implements Comparable<TimeSpan> {
     }
 
     public Duration toDuration() {
-        return Duration.ofNanos(TotalNanoseconds);
+        return Duration.ofNanos(totalNanos);
+    }
+    
+    public int days() {
+        return days;
+    }
+
+    public int hours() {
+        return hours;
+    }
+
+    public int minutes() {
+        return minutes;
+    }
+
+    public int seconds() {
+        return seconds;
+    }
+
+    public int millis() {
+        return millis;
+    }
+    
+    public int micros() {
+        return micros;
+    }
+
+    public int nanos() {
+        return nanos;
+    }
+
+    public long totalNanos() {
+        return totalNanos;
     }
 
     @Override
@@ -87,15 +115,15 @@ public class TimeSpan implements Comparable<TimeSpan> {
 
     @Override
     public String toString() {
-        return _string;
+        return string;
     }
 
     public String toPreciseString() {
-        return _preciseString;
+        return preciseString;
     }
 
     @Override
     public int compareTo(TimeSpan other) {
-        return Long.compare(this.TotalNanoseconds, other.TotalNanoseconds);
+        return Long.compare(this.totalNanos, other.totalNanos);
     }
 }

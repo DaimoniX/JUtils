@@ -57,7 +57,7 @@ public class MergeSorter extends Sorter {
     }
 
     @Override
-    public <T> void Sort(T[] array, Comparator<? super T> comparator) {
+    public <T> void sort(T[] array, Comparator<? super T> comparator) {
         sort(array, comparator, 0, array.length - 1);
     }
 }

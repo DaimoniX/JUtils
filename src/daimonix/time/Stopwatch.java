@@ -9,41 +9,41 @@ public class Stopwatch {
         startTime = stopTime = System.nanoTime();
     }
 
-    public void Start() {
+    public void start() {
         if (isRunning)
             return;
         startTime = System.nanoTime();
         isRunning = true;
     }
 
-    public void Restart() {
+    public void restart() {
         if (!isRunning)
             return;
         startTime = System.nanoTime();
     }
 
-    public void Stop() {
+    public void stop() {
         if (!isRunning)
             return;
         stopTime = System.nanoTime();
         isRunning = false;
     }
 
-    public boolean IsRunning() {
+    public boolean isRunning() {
         return isRunning;
     }
 
-    public long GetElapsedNanoseconds() {
+    public long getElapsedNanoseconds() {
         if (isRunning)
             return System.nanoTime() - startTime;
         return stopTime - startTime;
     }
 
-    public long GetElapsedMilliseconds() {
-        return GetElapsedNanoseconds() / 1000000;
+    public long getElapsedMilliseconds() {
+        return getElapsedNanoseconds() / 1000000;
     }
 
-    public TimeSpan GetElapsedTime() {
-        return new TimeSpan(GetElapsedNanoseconds());
+    public TimeSpan getElapsedTime() {
+        return TimeSpan.fromNano(getElapsedNanoseconds());
     }
 }

@@ -7,7 +7,7 @@ import daimonix.utils.ArrayUtils;
 public class CombSorter extends Sorter {
 
     @Override
-    public <T> void Sort(T[] array, Comparator<? super T> comparator) {
+    public <T> void sort(T[] array, Comparator<? super T> comparator) {
         int gap = array.length;
 
         boolean sorted = false;
@@ -23,7 +23,7 @@ public class CombSorter extends Sorter {
                 if (comparator.compare(array[i], array[i + gap]) > 0) {
                     sorted = false;
 
-                    ArrayUtils.Swap(array, i, i + gap);
+                    ArrayUtils.swap(array, i, i + gap);
                 }
             }
         }

@@ -6,7 +6,7 @@ import daimonix.utils.ArrayUtils;
 
 public class HeapSorter extends Sorter {
 
-    private <T> void BuildHeap(T array[], Comparator<? super T> comparator, int n, int i) {
+    private <T> void buildHeap(T[] array, Comparator<? super T> comparator, int n, int i) {
         int root = i;
         int l = i * 2 + 1;
         int r = i * 2 + 2;
@@ -20,18 +20,18 @@ public class HeapSorter extends Sorter {
         if (root == i)
             return;
 
-        ArrayUtils.Swap(array, i, root);
-        BuildHeap(array, comparator, n, root);
+        ArrayUtils.swap(array, i, root);
+        buildHeap(array, comparator, n, root);
     }
 
     @Override
-    public <T> void Sort(T[] array, Comparator<? super T> comparator) {
+    public <T> void sort(T[] array, Comparator<? super T> comparator) {
         for (int i = array.length / 2 - 1; i >= 0; i--)
-            BuildHeap(array, comparator, array.length, i);
+            buildHeap(array, comparator, array.length, i);
 
         for (int i = array.length - 1; i > 0; i--) {
-            ArrayUtils.Swap(array, 0, i);
-            BuildHeap(array, comparator, i, 0);
+            ArrayUtils.swap(array, 0, i);
+            buildHeap(array, comparator, i, 0);
         }
     }
 

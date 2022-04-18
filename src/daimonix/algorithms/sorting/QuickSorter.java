@@ -19,7 +19,7 @@ public class QuickSorter extends Sorter {
                 j--;
             }
             if (i <= j) {
-                ArrayUtils.Swap(array, i, j);
+                ArrayUtils.swap(array, i, j);
                 i++;
                 j--;
             }
@@ -32,7 +32,7 @@ public class QuickSorter extends Sorter {
     }
 
     @Override
-    public <T> void Sort(T[] array, Comparator<? super T> comparator) {
+    public <T> void sort(T[] array, Comparator<? super T> comparator) {
         quickSort(array, comparator, 0, array.length - 1);
     }
 }
