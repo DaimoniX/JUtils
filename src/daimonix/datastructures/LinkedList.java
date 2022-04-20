@@ -1,6 +1,9 @@
 package daimonix.datastructures;
 
-public class LinkedList<T> {
+import java.util.Iterator;
+import java.util.function.Consumer;
+
+public class LinkedList<T> implements Iterable<T> {
     private int length;
     private ListNode<T> firstNode;
     private ListNode<T> lastNode;
@@ -54,6 +57,11 @@ public class LinkedList<T> {
     public void removeAll(T value) {
         while (contains(value))
             remove(value);
+    }
+
+    public void removeAll() {
+        length = 0;
+        firstNode = lastNode = null;
     }
 
     public void removeLast() {
@@ -133,6 +141,42 @@ public class LinkedList<T> {
             node = node.next;
         }
         return arr;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedListIterator<>(this);
+    }
+
+    private static class LinkedListIterator<V> implements Iterator<V> {
+        private final LinkedList<V> list;
+        private ListNode<V> node;
+
+        public LinkedListIterator(LinkedList<V> list) {
+            this.list = list;
+            node = new ListNode<>(null, this.list.firstNode);
+        }
+
+        @Override
+        public boolean hasNext() {
+            return node != list.lastNode;
+        }
+
+        @Override
+        public V next() {
+            node = node.next;
+            return node.value;
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public void forEachRemaining(Consumer<? super V> action) {
+            Iterator.super.forEachRemaining(action);
+        }
     }
 
     private static class ListNode<V> {
