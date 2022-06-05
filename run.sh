@@ -1,5 +1,3 @@
 #!/bin/bash
-cd ./src/
-javac -d ../build/ App.java
-cd ../build/
-java App
+mvn install
+java -cp target/jutils-1.0.jar daimonix.Main

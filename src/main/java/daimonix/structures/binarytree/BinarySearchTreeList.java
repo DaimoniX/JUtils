@@ -70,7 +70,7 @@ public class BinarySearchTreeList<T extends Comparable<T>> implements BinarySear
 
     @Override
     public void addChild(T parent, T value) throws NoSuchElementException, NullPointerException {
-        var parentNode = findNode(parent, root);
+        TreeNode<T> parentNode = findNode(parent, root);
 
         if (parentNode.leftChild == null)
             parentNode.leftChild = new TreeNode<>(value, parentNode, null, null);
@@ -101,7 +101,7 @@ public class BinarySearchTreeList<T extends Comparable<T>> implements BinarySear
             } else
                 root = null;
         } else if (targetNode.leftChild != null && targetNode.rightChild != null) {
-            var freeNode = findFreeNode(targetNode.rightChild);
+            TreeNode<T> freeNode = findFreeNode(targetNode.rightChild);
             targetNode.value = freeNode.value;
             if (freeNode.root.leftChild == freeNode)
                 freeNode.root.leftChild = null;
