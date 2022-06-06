@@ -1,10 +1,10 @@
-package daimonix.structures;
+package daimonix.structures.list;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
-public class LinkedList<T> implements Iterable<T> {
+public class LinkedList<T> implements List<T> {
     private int size;
     private ListNode<T> firstNode;
     private ListNode<T> lastNode;
@@ -110,7 +110,7 @@ public class LinkedList<T> implements Iterable<T> {
         }
     }
 
-    public void add(T element) {
+    public T add(T element) {
         LinkedList.ListNode<T> newNode = new LinkedList.ListNode<>(element, null);
         if(lastNode == null)
             firstNode = newNode;
@@ -118,6 +118,7 @@ public class LinkedList<T> implements Iterable<T> {
             lastNode.next = newNode;
         lastNode = newNode;
         size++;
+        return element;
     }
 
     private boolean isValidIndex(int index) {

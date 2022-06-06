@@ -1,4 +1,4 @@
-package daimonix.structures;
+package daimonix.structures.list;
 
 import java.util.EmptyStackException;
 
