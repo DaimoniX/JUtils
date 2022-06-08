@@ -19,7 +19,7 @@ public class ArrayUtils {
     public static <T> String toString(T[] array, String separator) {
         if (array == null)
             return "null";
-        if (array.length == 1)
+        if (array.length == 0)
             return "[]";
         StringBuilder sBuilder = new StringBuilder().append('[');
         for (int i = 0; i < array.length; i++) {

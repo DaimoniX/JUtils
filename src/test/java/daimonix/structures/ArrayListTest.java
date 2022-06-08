@@ -7,23 +7,23 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import daimonix.structures.list.LinkedList;
+import daimonix.structures.list.ArrayList;
 import daimonix.structures.list.List;
 
-public class LinkedListTest {
+public class ArrayListTest {
     @Test
     public void toArray() {
-        List<Integer> list = new LinkedList<>();
+        List<Integer> list = new ArrayList<>();
         for (int i = 1; i <= 5; i++)
             list.add(i);
         assertArrayEquals(new Integer[] {1, 2, 3, 4, 5 }, list.toArray());
-        List<Integer> empty = new LinkedList<>();
+        List<Integer> empty = new ArrayList<>();
         assertArrayEquals(new Integer[0], empty.toArray());
     }
 
     @Test
     public void remove() {
-        List<Integer> list = new LinkedList<>();
+        List<Integer> list = new ArrayList<>();
         for (int i = 1; i <= 5; i++)
             list.add(i);
         list.removeAt(0);
@@ -41,8 +41,8 @@ public class LinkedListTest {
 
     @Test
     public void set() {
-        List<Integer> list = new LinkedList<>();
-        for(int i = 1; i <= 10; i++)
+        List<Integer> list = new ArrayList<>();
+        for (int i = 1; i <= 10; i++)
             list.add(i);
         Integer expected = -1;
         list.set(expected, 5);
@@ -55,13 +55,13 @@ public class LinkedListTest {
 
     @Test
     public void listToString() {
-        List<Integer> empty = new LinkedList<>();
-        assertEquals("LinkedList{}", empty.toString());
-        List<Integer> withElements = new LinkedList<>();
+        List<Integer> empty = new ArrayList<>();
+        assertEquals("ArrayList{}", empty.toString());
+        List<Integer> withElements = new ArrayList<>();
         for (int i = 1; i <= 10; i++)
             withElements.add(i);
-        assertEquals("LinkedList{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}", withElements.toString());
+        assertEquals("ArrayList{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}", withElements.toString());
         withElements.set(null, 0);
-        assertEquals("LinkedList{null, 2, 3, 4, 5, 6, 7, 8, 9, 10}", withElements.toString());
+        assertEquals("ArrayList{null, 2, 3, 4, 5, 6, 7, 8, 9, 10}", withElements.toString());
     }
 }

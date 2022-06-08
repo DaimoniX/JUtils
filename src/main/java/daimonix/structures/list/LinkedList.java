@@ -1,5 +1,6 @@
 package daimonix.structures.list;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
@@ -14,10 +15,12 @@ public class LinkedList<T> implements List<T> {
         lastNode = firstNode = null;
     }
     
+    @Override
     public int size() {
         return this.size;
     }
 
+    @Override
     public boolean empty() {
         return this.size == 0;
     }
@@ -30,7 +33,12 @@ public class LinkedList<T> implements List<T> {
         size--;
     }
 
-    public void removeAt(int index) {
+    @Override
+    public void removeAt(int index) throws NullPointerException, IndexOutOfBoundsException {
+        if(firstNode == null)
+            throw new NullPointerException("List is empty!");
+        if(index < 0 || index > size)
+            throw new IndexOutOfBoundsException();
         if(index == 0)
             removeFirst();
         else if(index == size - 1)
@@ -42,6 +50,7 @@ public class LinkedList<T> implements List<T> {
         }
     }
 
+    @Override
     public void remove(T value) {
         ListNode<T> node = firstNode;
         for(int i = 0; i < size; i++) {
@@ -53,6 +62,7 @@ public class LinkedList<T> implements List<T> {
         }
     }
 
+    @Override
     public boolean contains(T value) {
         ListNode<T> node = firstNode;
         for(int i = 0; i < size; i++) {
@@ -63,6 +73,7 @@ public class LinkedList<T> implements List<T> {
         return false;
     }
 
+    @Override
     public void removeAll() {
         size = 0;
         firstNode = lastNode = null;
@@ -77,14 +88,24 @@ public class LinkedList<T> implements List<T> {
         size--;
     }
 
+    @Override
     public T getFirst() {
         return firstNode.value;
     }
 
+    @Override
     public T get(int index) {
         return getNode(index).value;
     }
 
+    @Override
+    public void set(T value, int index) throws NullPointerException, IndexOutOfBoundsException {
+        if(firstNode == null)
+            throw new NullPointerException("List is empty!");
+        getNode(index).value = value;
+    }
+
+    @Override
     public T getLast() {
         return lastNode.value;
     }
@@ -110,22 +131,23 @@ public class LinkedList<T> implements List<T> {
         }
     }
 
-    public T add(T element) {
-        LinkedList.ListNode<T> newNode = new LinkedList.ListNode<>(element, null);
+    @Override
+    public T add(T value) {
+        LinkedList.ListNode<T> newNode = new LinkedList.ListNode<>(value, null);
         if(lastNode == null)
             firstNode = newNode;
         else
             lastNode.next = newNode;
         lastNode = newNode;
         size++;
-        return element;
+        return value;
     }
 
     private boolean isValidIndex(int index) {
         return index >= 0 && index < size;
     }
 
-    private ListNode<T> getNode(int index) {
+    private ListNode<T> getNode(int index) throws IndexOutOfBoundsException {
         if(!isValidIndex(index))
             throw new IndexOutOfBoundsException();
         ListNode<T> node = firstNode;
@@ -134,6 +156,21 @@ public class LinkedList<T> implements List<T> {
         return node;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("LinkedList{");
+        int index = 0;
+        for (var el : this) {
+            sb.append(el);
+            if(index + 1 < size)
+                sb.append(", ");
+            index++;
+        }
+        return sb.append("}").toString();
+    }
+
+    @Override
     public Object[] toArray() {
         Object[] arr = new Object[size];
         ListNode<T> node = firstNode;
@@ -160,7 +197,7 @@ public class LinkedList<T> implements List<T> {
 
         @Override
         public boolean hasNext() {
-            return node != list.lastNode;
+            return node.next != null;
         }
 
         @Override
@@ -190,5 +227,14 @@ public class LinkedList<T> implements List<T> {
             this.value = value;
             this.next = next;
         }
+    }
+
+    @Override
+    public T[] toArray(T[] array) {
+        T[] res = Arrays.copyOf(array, size);
+        int index = 0;
+        for (var value : this)
+            res[index++] = value;
+        return res;
     }
 }
