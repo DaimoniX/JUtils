@@ -7,6 +7,12 @@ public class BinaryTreeArray<T> implements BinaryTree<T> {
     private int nodeCount;
     private int capacity;
 
+    public BinaryTreeArray() {
+        capacity = 2;
+        growArray();
+        nodeCount = 0;
+    }
+
     public BinaryTreeArray(T root) {
         if (root == null)
             throw new NullPointerException();
@@ -49,18 +55,19 @@ public class BinaryTreeArray<T> implements BinaryTree<T> {
 
         if (parentIndex < 0)
             throw new NoSuchElementException();
-        
+
         int childIndex = parentIndex * 2 + 1;
 
         while (childIndex + 1 >= capacity)
             growArray();
-        
+
         if (nodes[childIndex] == null)
             nodes[childIndex] = value;
         else if (nodes[childIndex + 1] == null)
             nodes[childIndex + 1] = value;
         else
             throw new IllegalArgumentException();
+        nodeCount++;
     }
 
     @Override
@@ -69,7 +76,7 @@ public class BinaryTreeArray<T> implements BinaryTree<T> {
 
         if (targetIndex < 0)
             throw new NoSuchElementException();
-        
+
         boolean hasLeftChild = targetIndex * 2 + 1 < capacity && nodes[targetIndex * 2 + 1] != null;
         boolean hasRightChild = targetIndex * 2 + 2 < capacity && nodes[targetIndex * 2 + 2] != null;
 
@@ -120,5 +127,17 @@ public class BinaryTreeArray<T> implements BinaryTree<T> {
         subtree += printTree(rootIndex * 2 + 1);
         subtree += printTree(rootIndex * 2 + 2);
         return subtree + ")";
+    }
+
+    @Override
+    public void add(T value) throws NullPointerException {
+        if (value == null)
+            throw new NullPointerException();
+
+        if (isEmpty()) {
+            nodes[0] = value;
+            nodeCount++;
+        } else
+            addChild(nodes[findFreeNode(0)], value);
     }
 }

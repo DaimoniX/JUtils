@@ -29,7 +29,7 @@ public class Queue<T> {
     }
 
     public T element() {
-        if(list.empty())
+        if (list.isEmpty())
             throw new NoSuchElementException();
         return list.getFirst();
     }
@@ -44,7 +44,7 @@ public class Queue<T> {
     }
 
     public T poll() {
-        if(list.empty())
+        if (list.isEmpty())
             return null;
         T el = list.getFirst();
         list.removeFirst();
@@ -52,7 +52,7 @@ public class Queue<T> {
     }
 
     public T remove() {
-        if(list.empty())
+        if (list.isEmpty())
             throw new NoSuchElementException();
         T el = list.getFirst();
         list.removeFirst();
@@ -60,13 +60,13 @@ public class Queue<T> {
     }
 
     public T peek() {
-        if(list.empty())
+        if (list.isEmpty())
             return null;
         return list.getFirst();
     }
 
     public boolean empty() {
-        return list.empty();
+        return list.isEmpty();
     }
 
     private boolean canAdd() {
@@ -76,7 +76,7 @@ public class Queue<T> {
     public int search(T o) {
         int index = 0;
         for (var el : list) {
-            if(el.equals(o))
+            if (el.equals(o))
                 return index + 1;
             index++;
         }

@@ -6,7 +6,7 @@ public class Stack<T> {
     private final LinkedList<T> list;
 
     public Stack() {
-        list = new LinkedList<T>();
+        list = new LinkedList<>();
     }
 
     public T push(T item) {
@@ -15,7 +15,7 @@ public class Stack<T> {
     }
 
     public T pop() throws EmptyStackException {
-        if(empty())
+        if (empty())
             throw new EmptyStackException();
         T el = list.getLast();
         list.removeLast();
@@ -23,19 +23,19 @@ public class Stack<T> {
     }
 
     public T peek() throws EmptyStackException {
-        if(empty())
+        if (empty())
             throw new EmptyStackException();
         return list.getLast();
     }
 
     public boolean empty() {
-        return list.empty();
+        return list.isEmpty();
     }
 
     public int search(T o) {
         int index = 0;
         for (var el : list) {
-            if(el.equals(o))
+            if (el.equals(o))
                 return index + 1;
             index++;
         }

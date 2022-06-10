@@ -9,24 +9,24 @@ public class LinkedList<T> implements List<T> {
     private int size;
     private ListNode<T> firstNode;
     private ListNode<T> lastNode;
-    
+
     public LinkedList() {
         this.size = 0;
         lastNode = firstNode = null;
     }
-    
+
     @Override
     public int size() {
         return this.size;
     }
 
     @Override
-    public boolean empty() {
+    public boolean isEmpty() {
         return this.size == 0;
     }
-    
+
     public void removeFirst() {
-        if(size > 1)
+        if (size > 1)
             firstNode = firstNode.next;
         else
             firstNode = lastNode = null;
@@ -35,13 +35,13 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void removeAt(int index) throws NullPointerException, IndexOutOfBoundsException {
-        if(firstNode == null)
+        if (firstNode == null)
             throw new NullPointerException("List is empty!");
-        if(index < 0 || index > size)
+        if (index < 0 || index > size)
             throw new IndexOutOfBoundsException();
-        if(index == 0)
+        if (index == 0)
             removeFirst();
-        else if(index == size - 1)
+        else if (index == size - 1)
             removeLast();
         else {
             ListNode<T> prevNode = getNode(index - 1);
@@ -53,8 +53,8 @@ public class LinkedList<T> implements List<T> {
     @Override
     public void remove(T value) {
         ListNode<T> node = firstNode;
-        for(int i = 0; i < size; i++) {
-            if(node.value.equals(value)) {
+        for (int i = 0; i < size; i++) {
+            if (node.value.equals(value)) {
                 removeAt(i);
                 return;
             }
@@ -65,8 +65,8 @@ public class LinkedList<T> implements List<T> {
     @Override
     public boolean contains(T value) {
         ListNode<T> node = firstNode;
-        for(int i = 0; i < size; i++) {
-            if(node.value.equals(value))
+        for (int i = 0; i < size; i++) {
+            if (node.value.equals(value))
                 return true;
             node = node.next;
         }
@@ -100,7 +100,7 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void set(T value, int index) throws NullPointerException, IndexOutOfBoundsException {
-        if(firstNode == null)
+        if (firstNode == null)
             throw new NullPointerException("List is empty!");
         getNode(index).value = value;
     }
@@ -112,19 +112,18 @@ public class LinkedList<T> implements List<T> {
 
     public void insert(T element) {
         ListNode<T> newNode = new ListNode<>(element, firstNode);
-        if(firstNode == null)
+        if (firstNode == null)
             lastNode = newNode;
         firstNode = newNode;
         size++;
     }
 
     public void insertAt(T element, int index) {
-        if(index == 0) {
+        if (index == 0) {
             insert(element);
-        } else if(index == size - 1) {
+        } else if (index == size - 1) {
             add(element);
-        }
-        else {
+        } else {
             ListNode<T> prevNode = getNode(index - 1);
             prevNode.next = new ListNode<>(element, prevNode.next);
             size++;
@@ -134,7 +133,7 @@ public class LinkedList<T> implements List<T> {
     @Override
     public T add(T value) {
         LinkedList.ListNode<T> newNode = new LinkedList.ListNode<>(value, null);
-        if(lastNode == null)
+        if (lastNode == null)
             firstNode = newNode;
         else
             lastNode.next = newNode;
@@ -148,10 +147,10 @@ public class LinkedList<T> implements List<T> {
     }
 
     private ListNode<T> getNode(int index) throws IndexOutOfBoundsException {
-        if(!isValidIndex(index))
+        if (!isValidIndex(index))
             throw new IndexOutOfBoundsException();
         ListNode<T> node = firstNode;
-        for(int i = 0; i < index; i++)
+        for (int i = 0; i < index; i++)
             node = node.next;
         return node;
     }
@@ -163,7 +162,7 @@ public class LinkedList<T> implements List<T> {
         int index = 0;
         for (var el : this) {
             sb.append(el);
-            if(index + 1 < size)
+            if (index + 1 < size)
                 sb.append(", ");
             index++;
         }
@@ -202,7 +201,7 @@ public class LinkedList<T> implements List<T> {
 
         @Override
         public V next() {
-            if(!hasNext())
+            if (!hasNext())
                 throw new NoSuchElementException();
             node = node.next;
             return node.value;

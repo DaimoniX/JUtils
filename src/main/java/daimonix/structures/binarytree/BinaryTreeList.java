@@ -3,8 +3,13 @@ package daimonix.structures.binarytree;
 import java.util.NoSuchElementException;
 
 public class BinaryTreeList<T> implements BinaryTree<T> {
-    private TreeNode<T> root;
-    private int nodeCount;
+    protected TreeNode<T> root;
+    protected int nodeCount;
+
+    public BinaryTreeList() {
+        root = null;
+        nodeCount = 0;
+    }
 
     public BinaryTreeList(T root) {
         if (root == null)
@@ -13,12 +18,12 @@ public class BinaryTreeList<T> implements BinaryTree<T> {
         nodeCount = 1;
     }
 
-    private TreeNode<T> findNode(T value, TreeNode<T> root) {
+    protected TreeNode<T> findNode(T value, TreeNode<T> root) {
         if (root == null)
             return null;
         if (root.value == value)
             return root;
-        var child = findNode(value, root.leftChild);
+        TreeNode<T> child = findNode(value, root.leftChild);
         if (child != null)
             return child;
         child = findNode(value, root.rightChild);
@@ -45,7 +50,7 @@ public class BinaryTreeList<T> implements BinaryTree<T> {
     @Override
     public void addChild(T parent, T value) throws NoSuchElementException, NullPointerException {
         var parentNode = findNode(parent, root);
-        
+
         if (parentNode.leftChild == null)
             parentNode.leftChild = new TreeNode<>(value, parentNode, null, null);
         else if (parentNode.rightChild == null)
@@ -96,7 +101,7 @@ public class BinaryTreeList<T> implements BinaryTree<T> {
         return value;
     }
 
-    private TreeNode<T> findFreeNode(TreeNode<T> root) {
+    protected TreeNode<T> findFreeNode(TreeNode<T> root) {
         while (root.leftChild != null)
             root = root.leftChild;
         return root;
@@ -107,7 +112,7 @@ public class BinaryTreeList<T> implements BinaryTree<T> {
         return printTree(root);
     }
 
-    private String printTree(TreeNode<T> root) {
+    protected String printTree(TreeNode<T> root) {
         if (root == null)
             return "()";
         String tree = "(" + root.value;
@@ -116,7 +121,7 @@ public class BinaryTreeList<T> implements BinaryTree<T> {
         return tree + ")";
     }
 
-    private static class TreeNode<V> {
+    protected static class TreeNode<V> {
         TreeNode<V> root;
         V value;
         TreeNode<V> leftChild;
@@ -132,5 +137,17 @@ public class BinaryTreeList<T> implements BinaryTree<T> {
             this.leftChild = leftChild;
             this.rightChild = rightChild;
         }
+    }
+
+    @Override
+    public void add(T value) throws NullPointerException {
+        if (value == null)
+            throw new NullPointerException();
+
+        if (isEmpty()) {
+            root = new TreeNode<>(value);
+            nodeCount++;
+        } else
+            addChild(findFreeNode(root).value, value);
     }
 }

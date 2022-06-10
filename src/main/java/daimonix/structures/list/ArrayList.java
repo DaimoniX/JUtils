@@ -30,14 +30,14 @@ public class ArrayList<T> implements List<T> {
     }
 
     private int indexOf(T value) {
-        for(int i = 0; i < size; i++)
-            if(get(i).equals(value))
+        for (int i = 0; i < size; i++)
+            if (get(i).equals(value))
                 return i;
         return -1;
     }
 
     @Override
-    public boolean empty() {
+    public boolean isEmpty() {
         return size == 0;
     }
 
