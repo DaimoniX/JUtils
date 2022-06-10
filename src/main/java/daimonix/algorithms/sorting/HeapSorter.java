@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import daimonix.utils.ArrayUtils;
 
-public class HeapSorter extends Sorter {
+public class HeapSorter implements Sorter {
 
     private <T> void buildHeap(T[] array, Comparator<? super T> comparator, int n, int i) {
         int root = i;

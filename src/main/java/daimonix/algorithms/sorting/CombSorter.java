@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import daimonix.utils.ArrayUtils;
 
-public class CombSorter extends Sorter {
+public class CombSorter implements Sorter {
 
     @Override
     public <T> void sort(T[] array, Comparator<? super T> comparator) {

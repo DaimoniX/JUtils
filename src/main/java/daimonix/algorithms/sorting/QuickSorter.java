@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import daimonix.utils.ArrayUtils;
 
-public class QuickSorter extends Sorter {
+public class QuickSorter implements Sorter {
     
     private <T> void quickSort(T[] array, Comparator<? super T> comparator, int left, int right) {
         T pivot = array[(left + right) / 2];

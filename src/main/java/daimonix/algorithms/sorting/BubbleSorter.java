@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import daimonix.utils.ArrayUtils;
 
-public class BubbleSorter extends Sorter {
+public class BubbleSorter implements Sorter {
 
     @Override
     public <T> void sort(T[] array, Comparator<? super T> comparator) {

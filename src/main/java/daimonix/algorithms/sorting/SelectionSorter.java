@@ -3,7 +3,7 @@ package daimonix.algorithms.sorting;
 import daimonix.utils.ArrayUtils;
 import java.util.Comparator;
 
-public class SelectionSorter extends Sorter {
+public class SelectionSorter implements Sorter {
 
     @Override
     public <T> void sort(T[] array, Comparator<? super T> comparator) {

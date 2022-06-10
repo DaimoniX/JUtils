@@ -2,7 +2,7 @@ package daimonix.algorithms.sorting;
 
 import java.util.Comparator;
 
-public class ShellSorter extends Sorter {
+public class ShellSorter implements Sorter {
 
     @Override
     public <T> void sort(T[] array, Comparator<? super T> comparator) {

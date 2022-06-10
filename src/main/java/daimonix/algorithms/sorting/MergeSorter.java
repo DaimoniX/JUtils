@@ -2,7 +2,7 @@ package daimonix.algorithms.sorting;
 
 import java.util.Comparator;
 
-public class MergeSorter extends Sorter {
+public class MergeSorter implements Sorter {
 
     @SuppressWarnings("unchecked")
     private <T> void merge(T[] array, Comparator<? super T> comparator, int left, int mid, int right) {
