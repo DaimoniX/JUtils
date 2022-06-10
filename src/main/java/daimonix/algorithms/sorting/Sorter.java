@@ -8,6 +8,8 @@ public abstract class Sorter {
     }
 
     public static <T> boolean isSorted(T[] array, Comparator<? super T> comparator) {
+        if (array == null)
+            return true;
         for (int i = 0; i < array.length - 1; i++) {
             if (comparator.compare(array[i + 1], array[i]) < 0)
                 return false;
