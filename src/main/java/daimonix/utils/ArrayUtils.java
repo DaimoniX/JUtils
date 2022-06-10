@@ -17,6 +17,8 @@ public class ArrayUtils {
     }
 
     public static <T> String toString(T[] array, String separator) {
+        if (separator == null)
+            throw new IllegalArgumentException("Separator cannot be null.");
         if (array == null)
             return "null";
         if (array.length == 0)
