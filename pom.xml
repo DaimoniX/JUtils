@@ -3,7 +3,7 @@
   <groupId>daimonix</groupId>
   <artifactId>jutils</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</version>
+  <version>0.1.0</version>
   <name>jutils</name>
   <build>
     <defaultGoal>package</defaultGoal>
