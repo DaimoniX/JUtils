@@ -5,7 +5,8 @@ import java.util.Comparator;
 public interface Sorter {
     /**
      * Checks is array is sorted with {@link Comparator}.naturalOrder().
-     * @param <T> type of elements in array
+     * 
+     * @param <T>   type of elements in array
      * @param array array to check
      * @return true if sorted in natural order
      */
@@ -15,8 +16,9 @@ public interface Sorter {
 
     /**
      * Checks is array is sorted with custom {@link Comparator}.
-     * @param <T> type of elements in array
-     * @param array array to check
+     * 
+     * @param <T>        type of elements in array
+     * @param array      array to check
      * @param comparator comparator
      * @return true if array is sorted with specified comparator
      */
@@ -32,7 +34,8 @@ public interface Sorter {
 
     /**
      * Sorts the array with {@link Comparator}.naturalOrder().
-     * @param <T> type of elements in array
+     * 
+     * @param <T>   type of elements in array
      * @param array array to sort
      */
     public default <T extends Comparable<T>> void sort(T[] array) {
@@ -41,8 +44,9 @@ public interface Sorter {
 
     /**
      * Sorts the array with specified {@link Comparator}.
-     * @param <T> type of elements in array
-     * @param array array to sort
+     * 
+     * @param <T>        type of elements in array
+     * @param array      array to sort
      * @param comparator comparator for sorting
      */
     public abstract <T> void sort(T[] array, Comparator<? super T> comparator);
